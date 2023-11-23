@@ -1,6 +1,6 @@
 const express = require("express");
 const capstone_router = express.Router();
-const { Project } = require("../models/capstone");
+const { Project ,User} = require("../models/capstone");
   
 capstone_router.get("/", async (req, res) => {
     console.log("get /");
