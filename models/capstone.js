@@ -7,10 +7,19 @@ const capstone_schema = new mongoose.Schema({
 },{timestamps : true})
 
 const userSchema = new mongoose.Schema({
-    email: { type: String, unique: true, required: true },
-    password: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  name: { type: String, required: true },
+  skills: [String],
+  experience: String,
+  portfolio: [{
+    title: String,
+    description: String,
+    imageUrl: String,
+  
+  }],
  
-  },{timestamps : true})
+});
 
  
 const Project = mongoose.model('Project',capstone_schema,'Project');

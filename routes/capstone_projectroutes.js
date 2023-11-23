@@ -100,6 +100,37 @@ capstone_router.post("/api/add_new_contact", async (req,res) => {
 })
 
 
+
+
+// API endpoint to get user profile by ID
+capstone_router.get('/api/profile/:userId', async (req, res) => {
+  try {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// API endpoint to update user profile by ID
+capstone_router.put('/api/profile/:userId', async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.userId, req.body, {
+      new: true,
+    });
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
 capstone_router.delete("/api/delete", async (req,res) => {
   const { number} = req.body;
 
